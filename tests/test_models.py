@@ -251,9 +251,7 @@ class TestProductModel(unittest.TestCase):
         for product in found:
             self.assertEqual(product.price, price)
         # check price is str
-        price = str(price)
-        count = len([product for product in products if product.price == price])
-        found = Product.find_by_price(price)
+        found = Product.find_by_price(str(price))
         self.assertEqual(found.count(), count)
         for product in found:
             self.assertEqual(product.price, price)
