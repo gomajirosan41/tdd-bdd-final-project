@@ -36,7 +36,18 @@ features/products.feature
 features/steps/load_steps.py
 ```
 
-You will be given partial implementations in each of these files to get you started. Use those implementations as examples of the code you should write.
+You will be given 
+partial implementations in each of these files to get you started. Use those implementations as examples of the code you should write.
+
+## How to check
+
+Ensure that all tests pass when you run `nosetests`, and maintain at least 95% code coverage.
+
+There should be no linting errors when you run `make lint`
+
+Start the service in a Terminal with the command `honcho start`
+
+In another Terminal, run the `behave` tool to make sure that all seven (7) scenarios pass
 
 ## License
 
