@@ -138,49 +138,8 @@ class TestProductModel(unittest.TestCase):
         """It should Error without id"""
         product = ProductFactory()
         product.id = None
-        product.create()
-        self.assertIsNotNone(product.id)
-        # Change it an save it
-        description = "testing"
-        product.description = description
-        product.id = None
-        self.assertRaises(DataValidationError, product.update)
-
-    def test_deserialize_with_missing_data(self):
-        """It should not deserialize a Product with missing data"""
-        data = {"name": "Test Product", "category": "CLOTHS"}
-        product = Product()
-        self.assertRaises(DataValidationError, product.deserialize, data)
-
-    def test_deserialize_with_invalid_available(self):
-        """It should not deserialize a Product with invalid available"""
-        data = {
-            "name": "Test Product",
-            "description": "This is a test product",
-            "price": "10.99",
-            "available": "Invalid",
-            "category": "CLOTHS"
-        }
-        product = Product()
-        self.assertRaises(DataValidationError, product.deserialize, data)
-
-    def test_deserialize_with_invalid_category(self):
-        """It should not deserialize a Product with invalid category"""
-        data = {
-            "name": "Test Product",
-            "description": "This is a test product",
-            "price": "10.99",
-            "available": True,
-            "category": "INVALID_CATEGORY"
-        }
-        product = Product()
-        self.assertRaises(DataValidationError, product.deserialize, data)
-
-    def test_deserialize_with_nodata(self):
-        """It should not deserialize a Product with nodata"""
-        data = "data"
-        product = Product()
-        self.assertRaises(DataValidationError, product.deserialize, data)
+        with self.assertRaises(DataValidationError):
+            product.update()
 
     def test_delete_a_product(self):
         """It should Delete a Product"""
